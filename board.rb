@@ -95,6 +95,24 @@ class Board
         puts
     end
 
+    def place_boat_comp(boat)
+        row = rand(8)
+        column = rand(8)
+        direction = rand(2)
+        direction == 0 ? direction = "horizontal" : direction = "vertical"
+        loop do
+            test = valid?(boat[:length], row, column, direction)
+            if test
+                break
+            else
+                row = rand(8)
+                column = rand(8)
+                direction = rand(2)
+            end
+        end
+        add_boat(boat, row, column, direction)
+    end
+
     # Adds a boat to the board
     def add_boat(boat, row, column, direction)
         for i in 1..boat[:length]
