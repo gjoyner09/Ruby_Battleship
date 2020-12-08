@@ -1,16 +1,17 @@
 class Board
 
-    attr_accessor :board, :carrier, :battleship, :destroyer, :submarine, :patrol_boat
+    attr_accessor :board, :carrier, :battleship, :destroyer, :submarine, :patrol_boat, :boats
 
     # Sets up a blank board
     def initialize
         @board = []
         8.times {@board.push([".", ".", ".", ".", ".", ".", ".", "."])}
-        @carrier = {length: 5, letter: "C", name: "carrier"}
-        @battleship = {length: 4, letter: "B", name: "battleship"}
-        @destroyer = {length: 3, letter: "D", name: "destroyer"}
-        @submarine = {length: 3, letter: "S", name: "submarine"}
-        @patrol_boat = {length: 2, letter: "P", name: "patrol boat"}
+        @carrier = {length: 5, letter: "C", name: "Carrier"}
+        @battleship = {length: 4, letter: "B", name: "Battleship"}
+        @destroyer = {length: 3, letter: "D", name: "Destroyer"}
+        @submarine = {length: 3, letter: "S", name: "Submarine"}
+        @patrol_boat = {length: 2, letter: "P", name: "Patrol Boat"}
+        @boats = [@carrier, @battleship, @destroyer, @submarine, @patrol_boat]
     end
 
     def space_to_row_col(space)

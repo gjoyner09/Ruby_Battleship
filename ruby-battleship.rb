@@ -19,3 +19,7 @@ comp_board.place_boat_comp(comp_board.battleship)
 comp_board.place_boat_comp(comp_board.destroyer)
 comp_board.place_boat_comp(comp_board.submarine)
 comp_board.place_boat_comp(comp_board.patrol_boat)
+
+user_guess_board = Board.new
+comp_guess_board = Board.new
+
