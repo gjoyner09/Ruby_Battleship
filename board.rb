@@ -14,7 +14,7 @@ class Board
         @boats = [@carrier, @battleship, @destroyer, @submarine, @patrol_boat]
     end
 
-    def space_to_row_col(space)
+    def self.space_to_row_col(space)
         return false if space.length != 2
         rowcol = []
         if space[1].to_i >= 1 && space[1].to_i <= 8
@@ -67,14 +67,14 @@ class Board
         end
         puts "Thank you. Now please enter the board space for the start of the boat (e.g. B3):"
         space = gets.chomp
-        rowcol = space_to_row_col(space)
+        rowcol = Board.space_to_row_col(space)
         loop do
             if rowcol
                 break
             else
                 puts "That input is invalid. Please enter the space in the format 'b4', for example:"
                 space = gets.chomp
-                rowcol = space_to_row_col(space)
+                rowcol = Board.space_to_row_col(space)
             end
         end
         validity = valid?(boat[:length], rowcol[0], rowcol[1], direction)
@@ -85,8 +85,12 @@ class Board
                 puts "That is an invalid space to put your boat. It either goes off the page or runs into another boat."
                 puts "Please enter a new starting space for your boat:"
                 space = gets.chomp
-                rowcol = space_to_row_col(space)
-                validity = valid?(boat[:length], rowcol[0], rowcol[1], direction)
+                rowcol = Board.space_to_row_col(space)
+                begin
+                    validity = valid?(boat[:length], rowcol[0], rowcol[1], direction)
+                rescue
+                    validity = false
+                end
             end
         end
         add_boat(boat, rowcol[0], rowcol[1], direction)
