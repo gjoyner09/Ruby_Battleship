@@ -50,7 +50,7 @@ class Board
                 if @board[row][column] != "."
                     return false
                 else
-                    direction == "horizontal" ? column += 1 : row += 1
+                    direction == "h" ? column += 1 : row += 1
                 end
             end
         rescue
@@ -61,13 +61,13 @@ class Board
 
     def place_boat_instructions(boat)
         puts "Let's place your #{boat[:name]} (#{boat[:length]} spaces long)."
-        puts "Please state whether you want the #{boat[:name]} to be placed in a horizontal or vertical fashion:"
+        puts "Please enter 'h' if you want the #{boat[:name]} to be placed in a horizontal fashion or 'v' for a vertical fashion:"
         direction = gets.chomp.downcase
         loop do
-            if direction == "horizontal" || direction == "vertical"
+            if direction == "h" || direction == "v"
                 break
             else
-                puts "That input is invalid. Please enter either 'horizontal' or 'vertical':"
+                puts "That input is invalid. Please enter either 'h' or 'v':"
                 direction = gets.chomp.downcase
             end
         end
@@ -110,7 +110,7 @@ class Board
         row = rand(8)
         column = rand(8)
         direction = rand(2)
-        direction == 0 ? direction = "horizontal" : direction = "vertical"
+        direction == 0 ? direction = "h" : direction = "v"
         loop do
             test = valid?(boat[:length], row, column, direction)
             if test
@@ -128,7 +128,7 @@ class Board
     def add_boat(boat, row, column, direction)
         for i in 1..boat[:length]
             @board[row][column] = boat[:letter]
-            direction == "horizontal" ? column += 1 : row += 1
+            direction == "h" ? column += 1 : row += 1
         end
     end
 

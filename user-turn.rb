@@ -1,5 +1,5 @@
 require_relative('board.rb')
-# require_relative('ruby-battleship.rb')
+require_relative('ruby-battleship.rb')
 
 def user_turn
     puts "Please enter the space you would like to guess (e.g. D6):"

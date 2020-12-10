@@ -1,6 +1,6 @@
 require_relative('board.rb')
 require_relative('welcome.rb')
-# require_relative('user-turn.rb')
+require_relative('user-turn.rb')
 
 welcome
 puts "Here is your board:"
