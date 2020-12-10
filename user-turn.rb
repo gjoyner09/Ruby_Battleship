@@ -8,8 +8,12 @@ def user_turn(c_b, u_g_b, boats)
     loop do
         if rowcol == false
             puts "That entry is invalid. Please try again:"
+            space = gets.chomp
+            rowcol = Board.space_to_row_col(space)
         elsif u_g_b[rowcol[0]][rowcol[1]] != "."
             puts "You've already guessed that space. Please try again:"
+            space = gets.chomp
+            rowcol = Board.space_to_row_col(space)
         else
             break
         end

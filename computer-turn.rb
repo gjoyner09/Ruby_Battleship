@@ -1,22 +1,24 @@
 require_relative('board.rb')
 
 def computer_turn(u_b, c_g_b, boats)
-    puts 1
+    puts "comp guess board:"
+    print_board_outside_class(c_g_b)
     # checks to see if they have an unsunk ship
     a = false
-    unsunk(a, c_g_b, boats)
-
-    puts 2
-    puts a
+    a = unsunk(a, c_g_b, boats)
     # if there's an outstanding unsunk ship, computer tries to sink it
+    puts "Before the if, a is: #{a}"
     if a
-        puts 3
+        puts "i'm looking for the unsunk ship"
         str = c_g_b.join
-        space = (str =~ /bar/)
+        lett = a[:letter]
+        puts "str: #{str}"
+        puts "str class: #{str.class}"
+        space = (str =~ /#{lett}/)
+        puts "space: #{space}"
         a = space / 8
         b = space % 8
-        if str.count(unsunk[:letter]) == 1
-            puts 4
+        if str.count(lett) == 1
             loop do
                 dir = rand(4)
                 case dir
@@ -34,8 +36,7 @@ def computer_turn(u_b, c_g_b, boats)
                 end
             end
         else
-            puts 5
-            lett = $u_b[a][b]
+            lett = u_b[a][b]
             if c_g_b[a+1][b] == lett
                 loop do
                     random = rand(2)
@@ -63,7 +64,6 @@ def computer_turn(u_b, c_g_b, boats)
                     end
                 end
             else
-                puts 6
                 loop do
                     random = rand(2)
                     begin
@@ -94,7 +94,7 @@ def computer_turn(u_b, c_g_b, boats)
 
     # if no outstanding unsunk ships, then computer makes a random guess
     else
-        puts 7
+        puts "I'm randomly guessing"
         loop do
             a = rand(8)
             b = rand(8)
@@ -113,6 +113,7 @@ def unsunk(a, c_g_b, boats)
             a = x
         end
     end
+    puts "After unsunk, a is: #{a}"
     return a
 end
 
@@ -124,7 +125,8 @@ def result(a, b, u_b, c_g_b, boats)
         puts "The computer's guess was a miss."
     else
         puts "The computer's guess was a hit!"
-        boat = boats.select { |x| x[:letter] == lett }
+        boat_arr = boats.select { |x| x[:letter] == lett }
+        boat = boat_arr[0]
         puts "The computer hit your #{boat[:name]}."
         str = c_g_b.join
         if str.count(lett) == boat[:length]
