@@ -37,6 +37,12 @@ class Board
         return rowcol
     end
 
+    def self.rowcol_to_space(rowcol)
+        space = (rowcol[1]+97).chr('UTF-8').upcase
+        space << (rowcol[0]+1).to_s
+        return space
+    end
+
     # Determines if a desired boat placement is valid
     def valid?(length, row, column, direction)
         begin
