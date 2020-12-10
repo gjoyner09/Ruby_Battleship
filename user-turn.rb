@@ -35,9 +35,4 @@ def user_turn(c_b, u_g_b, boats)
     puts "Here is your guessed board:"
     print_board_outside_class(u_g_b)
 
-    over = false
-    str = u_g_b.join
-    over = true if str.count(".") == 47
-    return over
-
 end

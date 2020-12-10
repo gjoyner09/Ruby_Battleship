@@ -141,4 +141,7 @@ class Board
         end
     end
 
+    def done
+        @board.split.count(".") == 47 ? true : false
+    end
 end
