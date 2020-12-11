@@ -61,16 +61,19 @@ class Board
 
     def place_boat_instructions(boat)
         puts "Let's place your #{boat[:name]} (#{boat[:length]} spaces long)."
+        sleep(1)
         puts "Please enter 'h' if you want the #{boat[:name]} to be placed in a horizontal fashion or 'v' for a vertical fashion:"
         direction = gets.chomp.downcase
         loop do
             if direction == "h" || direction == "v"
                 break
             else
+                sleep(0.2)
                 puts "That input is invalid. Please enter either 'h' or 'v':"
                 direction = gets.chomp.downcase
             end
         end
+        sleep(0.2)
         puts "Thank you. Now please enter the board space for the start of the boat (e.g. B3):"
         space = gets.chomp
         rowcol = Board.space_to_row_col(space)
@@ -78,6 +81,7 @@ class Board
             if rowcol
                 break
             else
+                sleep(0.2)
                 puts "That input is invalid. Please enter the space in the format 'b4', for example:"
                 space = gets.chomp
                 rowcol = Board.space_to_row_col(space)
@@ -88,7 +92,9 @@ class Board
             if validity
                 break
             else
+                sleep(0.2)
                 puts "That is an invalid space to put your boat. It either goes off the page or runs into another boat."
+                sleep(1)
                 puts "Please enter a new starting space for your boat:"
                 space = gets.chomp
                 rowcol = Board.space_to_row_col(space)
@@ -101,6 +107,7 @@ class Board
         end
         add_boat(boat, rowcol[0], rowcol[1], direction)
         puts "Thanks. Here is your board currently:"
+        sleep(1)
         puts
         print_board
         puts

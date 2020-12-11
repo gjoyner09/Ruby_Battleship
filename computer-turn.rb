@@ -1,8 +1,6 @@
 require_relative('board.rb')
 
 def computer_turn(u_b, c_g_b, boats)
-    puts "comp guess board:"
-    print_board_outside_class(c_g_b)
     # checks to see if they have an unsunk ship
     a = false
     a = unsunk(a, c_g_b, boats)
@@ -12,9 +10,7 @@ def computer_turn(u_b, c_g_b, boats)
         lett = a[:letter]
         space = (str =~ /#{lett}/)
         x = space / 8
-        puts "x: #{x}"
         y = space % 8
-        puts "y: #{y}"
         if str.count(lett) == 1
             loop do
                 x = space / 8
@@ -62,12 +58,16 @@ def computer_turn(u_b, c_g_b, boats)
                                         break
                                     end
                                 else
-                                    result(x+3, y, u_b, c_g_b, boats)
-                                    break
+                                    if c_g_b[x+3][y] == "."
+                                        result(x+3, y, u_b, c_g_b, boats)
+                                        break
+                                    end
                                 end
                             else
-                                result(x+2, y, u_b, c_g_b, boats)
-                                break
+                                if c_g_b[x+2][y] == "."
+                                    result(x+2, y, u_b, c_g_b, boats)
+                                    break
+                                end
                             end
                         end
                     rescue
@@ -90,12 +90,16 @@ def computer_turn(u_b, c_g_b, boats)
                                         break
                                     end
                                 else
-                                    result(x, y+3, u_b, c_g_b, boats)
-                                    break
+                                    if c_g_b[x][y+3] == "."
+                                        result(x, y+3, u_b, c_g_b, boats)
+                                        break
+                                    end
                                 end
                             else
-                                result(x, y+2, u_b, c_g_b, boats)
-                                break
+                                if c_g_b[x][y+2] == "."
+                                    result(x, y+2, u_b, c_g_b, boats)
+                                    break
+                                end
                             end
                         end
                     rescue
@@ -115,6 +119,12 @@ def computer_turn(u_b, c_g_b, boats)
             end
         end
     end
+    sleep(1)
+    puts "Here is the computer's guessed board:"
+    sleep(2)
+    puts
+    print_board_outside_class(c_g_b)
+    puts
 end
 
 def unsunk(a, c_g_b, boats)
@@ -130,16 +140,21 @@ end
 def result(a, b, u_b, c_g_b, boats)
     lett = u_b[a][b]
     lett == "." ? c_g_b[a][b] = "x" : c_g_b[a][b] = lett
+    sleep(2)
     puts "The computer guessed #{Board.rowcol_to_space([a,b])}."
     if lett == "."
+        sleep(1)
         puts "The computer's guess was a miss."
     else
+        sleep(1)
         puts "The computer's guess was a hit!"
         boat_arr = boats.select { |x| x[:letter] == lett }
         boat = boat_arr[0]
+        sleep(1)
         puts "The computer hit your #{boat[:name]}."
         str = c_g_b.join
         if str.count(lett) == boat[:length]
+            sleep(0.5)
             puts "The computer has now sunk your #{boat[:name]}."
         end
     end
