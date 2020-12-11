@@ -2,6 +2,8 @@ require_relative('board.rb')
 require_relative('print-board.rb')
 
 def user_turn(c_b, u_g_b, boats)
+    puts "Here is your guessed board:"
+    print_board_outside_class(u_g_b)
     puts "Please enter the space you would like to guess (e.g. D6):"
     space = gets.chomp
     rowcol = Board.space_to_row_col(space)

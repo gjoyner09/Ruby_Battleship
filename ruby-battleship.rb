@@ -43,9 +43,9 @@ end
 over = false
 while !over
     user_turn(comp_board.board, user_guess_board.board, user_board.boats)
-    over = done(user_guess_board.board)
-    break if over
+    # over = done(user_guess_board.board)
+    # break if over
     computer_turn(user_board.board, comp_guess_board.board, comp_board.boats)
-    over = done(comp_guess_board.board)
+    # over = done(comp_guess_board.board)
 end
 
