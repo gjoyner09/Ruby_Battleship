@@ -1,8 +1,8 @@
 require_relative('board.rb')
 require_relative('welcome.rb')
-require_relative('user-turn.rb')
-require_relative('computer-turn.rb')
-require_relative('game-over.rb')
+require_relative('user_turn.rb')
+require_relative('computer_turn.rb')
+require_relative('game_over.rb')
 require 'colorize'
 
 system("clear")

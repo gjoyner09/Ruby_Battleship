@@ -1,5 +1,5 @@
 require_relative('board.rb')
-require_relative('print-board.rb')
+require_relative('print_board.rb')
 
 def user_turn(c_b, u_g_b, boats)
     puts "Here is your guessed board:"
