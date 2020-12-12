@@ -6,7 +6,7 @@ def computer_turn(u_b, c_g_b, boats)
     a = false
     a = unsunk(a, c_g_b, boats)
     # if there's an outstanding unsunk ship, computer tries to sink it
-    if a
+    if a && !easy
         str = c_g_b.join
         lett = a[:letter]
         space = (str =~ /#{lett}/)
@@ -120,9 +120,9 @@ def computer_turn(u_b, c_g_b, boats)
             end
         end
     end
-    sleep(1)
+    sleep(1) if !fast
     puts "Here is the computer's guessed board:"
-    sleep(2)
+    sleep(2) if !fast
     puts
     print_board_outside_class(c_g_b)
     puts
@@ -141,21 +141,21 @@ end
 def result(a, b, u_b, c_g_b, boats)
     lett = u_b[a][b]
     lett == "." ? c_g_b[a][b] = "x" : c_g_b[a][b] = lett
-    sleep(2)
+    sleep(2) if !fast
     puts "The computer guessed #{Board.rowcol_to_space([a,b])}."
     if lett == "."
-        sleep(1)
+        sleep(1) if !fast
         puts "The computer's guess was a miss."
     else
-        sleep(1)
+        sleep(1) if !fast
         puts "The computer's guess was a hit!"
         boat_arr = boats.select { |x| x[:letter] == lett }
         boat = boat_arr[0]
-        sleep(1)
+        sleep(1) if !fast
         puts "The computer hit your #{boat[:name]}."
         str = c_g_b.join
         if str.count(lett) == boat[:length]
-            sleep(0.5)
+            sleep(0.5) if !fast
             puts "The computer has now sunk your #{boat[:name]}."
         end
     end

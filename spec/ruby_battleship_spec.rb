@@ -1,6 +1,11 @@
 require_relative('../board.rb')
 
 describe Board do
+    it 'should initialize a Board instance with a board array of length 8' do
+        test = Board.new
+        expect(test.board.length).to eq(8)
+    end
+
     it 'should initialize a Board instance with a boat array of length 5' do
         test = Board.new
         expect(test.boats.length).to eq(5)
