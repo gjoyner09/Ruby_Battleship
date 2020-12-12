@@ -4,9 +4,6 @@ def welcome
     puts "Welcome to Ruby Battleship by Grey Joyner!".colorize(:blue)
     puts "-------"
     sleep(2)
-    puts "To read the rules of Battleship, please visit https://www.hasbro.com/common/instruct/Battleship.PDF"
-    puts "-------"
-    sleep(2)
     puts "To start, you will place your boats."
     sleep(2)
     puts "You have five boats to place:"

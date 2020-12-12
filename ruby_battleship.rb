@@ -8,7 +8,9 @@ require 'colorize'
 system("clear")
 
 if ARGV[0] == "-h" || ARGV[0] == "--help"
-    puts "You asked for help"
+    puts "HELP FOR RUBY BATTLESHIP:"
+    puts "To read the rules of Battleship, please visit https://www.hasbro.com/common/instruct/Battleship.PDF"
+    puts ""
     exit
 elsif ARGV[0]
     puts "Invalid argument. For help, type '-h' or '--help'."
