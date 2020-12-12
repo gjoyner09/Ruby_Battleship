@@ -1,5 +1,7 @@
+require 'colorize'
+
 def welcome
-    puts "Welcome to Ruby Battleship by Grey Joyner!"
+    puts "Welcome to Ruby Battleship by Grey Joyner!".colorize(:blue)
     puts "-------"
     sleep(2)
     puts "To read the rules of Battleship, please visit https://www.hasbro.com/common/instruct/Battleship.PDF"

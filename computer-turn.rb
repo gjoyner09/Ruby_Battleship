@@ -1,4 +1,5 @@
 require_relative('board.rb')
+require 'colorize'
 
 def computer_turn(u_b, c_g_b, boats)
     # checks to see if they have an unsunk ship

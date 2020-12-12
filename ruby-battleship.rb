@@ -3,11 +3,20 @@ require_relative('welcome.rb')
 require_relative('user-turn.rb')
 require_relative('computer-turn.rb')
 require_relative('game-over.rb')
+require 'colorize'
 
 system("clear")
 
+if ARGV[0] == "-h" || ARGV[0] == "--help"
+    puts "You asked for help"
+    exit
+elsif ARGV[0]
+    puts "Invalid argument. For help, type '-h' or '--help'."
+    exit
+end
+
 welcome
-puts "Here is your board:"
+puts "Here is your board:".colorize(:blue)
 sleep(1.5)
 user_board = Board.new
 puts
