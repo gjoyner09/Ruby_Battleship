@@ -1,7 +1,7 @@
 require 'colorize'
 
-def welcome
-    puts "Welcome to Ruby Battleship by Grey Joyner!".colorize(:blue)
+def welcome(fast)
+    puts "Welcome to Ruby Battleship by Grey Joyner!"
     puts "-------"
     sleep(2) if !fast
     puts "To start, you will place your boats."

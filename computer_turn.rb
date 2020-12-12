@@ -1,7 +1,7 @@
 require_relative('board.rb')
 require 'colorize'
 
-def computer_turn(u_b, c_g_b, boats)
+def computer_turn(u_b, c_g_b, boats, fast)
     # checks to see if they have an unsunk ship
     a = false
     a = unsunk(a, c_g_b, boats)
@@ -34,7 +34,7 @@ def computer_turn(u_b, c_g_b, boats)
                 end
                 begin
                     if c_g_b[x][y] == "."
-                        result(x, y, u_b, c_g_b, boats)
+                        result(x, y, u_b, c_g_b, boats, fast)
                         break
                     end
                 rescue
@@ -48,25 +48,25 @@ def computer_turn(u_b, c_g_b, boats)
                     begin
                         if random == 0
                             if c_g_b[x-1][y] == "."
-                                result(x-1, y, u_b, c_g_b, boats)
+                                result(x-1, y, u_b, c_g_b, boats, fast)
                                 break
                             end
                         else
                             if c_g_b[x+2][y] == lett
                                 if c_g_b[x+3][y] == lett
                                     if c_g_b[x+4][y] == "."
-                                        result(x+4, y, u_b, c_g_b, boats)
+                                        result(x+4, y, u_b, c_g_b, boats, fast)
                                         break
                                     end
                                 else
                                     if c_g_b[x+3][y] == "."
-                                        result(x+3, y, u_b, c_g_b, boats)
+                                        result(x+3, y, u_b, c_g_b, boats, fast)
                                         break
                                     end
                                 end
                             else
                                 if c_g_b[x+2][y] == "."
-                                    result(x+2, y, u_b, c_g_b, boats)
+                                    result(x+2, y, u_b, c_g_b, boats, fast)
                                     break
                                 end
                             end
@@ -80,25 +80,25 @@ def computer_turn(u_b, c_g_b, boats)
                     begin
                         if random == 0
                             if c_g_b[x][y-1] == "."
-                                result(x, y-1, u_b, c_g_b, boats)
+                                result(x, y-1, u_b, c_g_b, boats, fast)
                                 break
                             end
                         else
                             if c_g_b[x][y+2] == lett
                                 if c_g_b[x][y+3] == lett
                                     if c_g_b[x][y+4] == "."
-                                        result(x, y+4, u_b, c_g_b, boats)
+                                        result(x, y+4, u_b, c_g_b, boats, fast)
                                         break
                                     end
                                 else
                                     if c_g_b[x][y+3] == "."
-                                        result(x, y+3, u_b, c_g_b, boats)
+                                        result(x, y+3, u_b, c_g_b, boats, fast)
                                         break
                                     end
                                 end
                             else
                                 if c_g_b[x][y+2] == "."
-                                    result(x, y+2, u_b, c_g_b, boats)
+                                    result(x, y+2, u_b, c_g_b, boats, fast)
                                     break
                                 end
                             end
@@ -115,7 +115,7 @@ def computer_turn(u_b, c_g_b, boats)
             x = rand(8)
             y = rand(8)
             if c_g_b[x][y] == "."
-                result(x, y, u_b, c_g_b, boats)
+                result(x, y, u_b, c_g_b, boats, fast)
                 break
             end
         end
@@ -138,7 +138,7 @@ def unsunk(a, c_g_b, boats)
     return a
 end
 
-def result(a, b, u_b, c_g_b, boats)
+def result(a, b, u_b, c_g_b, boats, fast)
     lett = u_b[a][b]
     lett == "." ? c_g_b[a][b] = "x" : c_g_b[a][b] = lett
     sleep(2) if !fast

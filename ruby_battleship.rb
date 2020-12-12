@@ -21,32 +21,39 @@ if ARGV[0] == "-h" || ARGV[0] == "--help"
     puts "- The program will show you the state of the board that you've guessed, with 'x' representing a miss, a letter representing a boat you've hit and a full stop representing a space you have not yet guessed."
     puts "- When either you or the computer has sunk every boat, the program will tell you who won."
     exit
-elsif ARGV[0] == "easy" || ARGV[1] == "easy" || ARGV[2] == "easy"
+elsif ARGV[0].downcase == "about"
+    puts "This is Ruby Battleship!"
+    puts "It was created by Grey Joyner in 2020."
+    puts "Its purpose is to create a terminal app to play the game battleship."
+    exit
+elsif ARGV[0].downcase == "easy" || ARGV[1] == "easy"
     easy = true
-elsif ARGV[0] == "fast" || ARGV[1] == "fast" || ARGV[2] == "fast"
+elsif ARGV[0].downcase == "fast" || ARGV[1] == "fast"
     fast = true
 elsif ARGV[0]
     puts "Invalid argument. For help, type '-h' or '--help'. For easy mode, type 'easy'."
     exit
 end
 
-welcome
-puts "Here is your board:".colorize(:blue)
+ARGV.clear
+
+welcome(fast)
+puts "Here is your board:"
 sleep(1.5) if !fast
 user_board = Board.new
 puts
 user_board.print_board
 puts
 sleep(2) if !fast
-user_board.place_boat_instructions(user_board.carrier)
+user_board.place_boat_instructions(user_board.carrier, fast)
 sleep(2) if !fast
-user_board.place_boat_instructions(user_board.battleship)
+user_board.place_boat_instructions(user_board.battleship, fast)
 sleep(2) if !fast
-user_board.place_boat_instructions(user_board.destroyer)
+user_board.place_boat_instructions(user_board.destroyer, fast)
 sleep(2) if !fast
-user_board.place_boat_instructions(user_board.submarine)
+user_board.place_boat_instructions(user_board.submarine, fast)
 sleep(2) if !fast
-user_board.place_boat_instructions(user_board.patrol_boat)
+user_board.place_boat_instructions(user_board.patrol_boat, fast)
 
 comp_board = Board.new
 comp_board.place_boat_comp(comp_board.carrier)
@@ -73,7 +80,7 @@ puts result == coin ? "It was #{coin}! You get to go first." : "It was #{result}
 puts
 
 if result != coin
-    computer_turn(user_board.board, comp_guess_board.board, comp_board.boats)
+    computer_turn(user_board.board, comp_guess_board.board, comp_board.boats, fast)
 end
 
 over = false
@@ -82,7 +89,7 @@ while !over
     puts "It's now your turn."
     puts
     sleep(2) if !fast
-    user_turn(comp_board.board, user_guess_board.board, user_board.boats)
+    user_turn(comp_board.board, user_guess_board.board, user_board.boats, fast)
     over = done(user_guess_board.board)
     if over
         sleep(1) if !fast
@@ -93,7 +100,7 @@ while !over
     puts
     puts "It is the computer's turn."
     sleep(1) if !fast
-    computer_turn(user_board.board, comp_guess_board.board, comp_board.boats)
+    computer_turn(user_board.board, comp_guess_board.board, comp_board.boats, fast)
     over = done(comp_guess_board.board)
     if over
         sleep(1) if !fast
