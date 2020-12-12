@@ -9,8 +9,15 @@ system("clear")
 
 if ARGV[0] == "-h" || ARGV[0] == "--help"
     puts "HELP FOR RUBY BATTLESHIP:"
-    puts "To read the rules of Battleship, please visit https://www.hasbro.com/common/instruct/Battleship.PDF"
-    puts ""
+    puts "- To read the rules of Battleship, please visit https://www.hasbro.com/common/instruct/Battleship.PDF"
+    puts "- You will start by placing your boats. Empty spaces on your board are represented by a full stop."
+    puts "- You will first indicate whether your boat will be places horizontally or vertically by typing 'h' or 'v'."
+    puts "- Then you will indicate the space for your boat to start in by typing the space, e.g. 'C3'."
+    puts "- Once you have placed all boats, you will type 'heads' or 'tails' to determine who goes first."
+    puts "- When it is your turn, you will type the space you want to guess, e.g. 'C3'."
+    puts "- The program will tell you whether you hit one of the computer's boats or whether you missed."
+    puts "- The program will show you the state of the board that you've guessed, with 'x' representing a miss, a letter representing a boat you've hit and a full stop representing a space you have not yet guessed."
+    puts "- When either you or the computer has sunk every boat, the program will tell you who won."
     exit
 elsif ARGV[0]
     puts "Invalid argument. For help, type '-h' or '--help'."
