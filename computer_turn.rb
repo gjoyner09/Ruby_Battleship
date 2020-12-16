@@ -1,17 +1,43 @@
 require_relative('board.rb')
 require 'colorize'
 
-def computer_turn(u_b, c_g_b, boats, fast)
+def computer_turn(u_b, c_g_b, boats, fast, easy)
     # checks to see if they have an unsunk ship
+    puts easy
     a = false
     a = unsunk(a, c_g_b, boats)
     # if there's an outstanding unsunk ship, computer tries to sink it
     if a && !easy
+        # puts "I am trying to find the unsunk ship"
         str = c_g_b.join
+        # puts "str: #{str}"
+        # puts "str[0]: #{str[0]}"
+        # puts "str[1]: #{str[1]}"
+        # puts "str[2]: #{str[2]}"
+        # puts "str[3]: #{str[3]}"
+        # puts "str[4]: #{str[4]}"
+        # puts "str[5]: #{str[5]}"
+        # puts "str[6]: #{str[6]}"
+        # puts "str[7]: #{str[7]}"
+        # puts "str[8]: #{str[8]}"
+        # puts "str[9]: #{str[9]}"
+        # puts "str[10]: #{str[10]}"
+        # puts "str[11]: #{str[11]}"
+        # puts "str[12]: #{str[12]}"
+        # puts "str[13]: #{str[13]}"
+        # puts "str[14]: #{str[14]}"
+        # puts "str[15]: #{str[15]}"
+        # puts "str[16]: #{str[16]}"
+        # puts "str[17]: #{str[17]}"
+        # p str
         lett = a[:letter]
-        space = (str =~ /#{lett}/)
+        # puts "lett: #{lett}"
+        space = str.index(lett)
+        # puts "space: #{space}"
         x = space / 8
         y = space % 8
+        puts "x: #{x}"
+        puts "y: #{y}"
         if str.count(lett) == 1
             loop do
                 x = space / 8
@@ -111,6 +137,7 @@ def computer_turn(u_b, c_g_b, boats, fast)
 
     # if no outstanding unsunk ships, then computer makes a random guess
     else
+        puts "I am guessing randomly"
         loop do
             x = rand(8)
             y = rand(8)

@@ -81,7 +81,7 @@ puts result == coin ? "It was #{coin}! You get to go first." : "It was #{result}
 puts
 
 if result != coin
-    computer_turn(user_board.board, comp_guess_board.board, comp_board.boats, fast)
+    computer_turn(user_board.board, comp_guess_board.board, comp_board.boats, fast, easy)
 end
 
 over = false
@@ -104,7 +104,7 @@ while !over
     puts
     puts "It is the computer's turn."
     sleep(1) if !fast
-    computer_turn(user_board.board, comp_guess_board.board, comp_board.boats, fast)
+    computer_turn(user_board.board, comp_guess_board.board, comp_board.boats, fast, easy)
     over = done(comp_guess_board.board)
     if over
         sleep(1) if !fast
