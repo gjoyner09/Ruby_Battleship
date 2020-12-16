@@ -4,6 +4,7 @@ require_relative('user_turn.rb')
 require_relative('computer_turn.rb')
 require_relative('game_over.rb')
 require 'colorize'
+require 'artii'
 
 system("clear")
 easy = false
@@ -21,14 +22,14 @@ if ARGV[0] == "-h" || ARGV[0] == "--help"
     puts "- The program will show you the state of the board that you've guessed, with 'x' representing a miss, a letter representing a boat you've hit and a full stop representing a space you have not yet guessed."
     puts "- When either you or the computer has sunk every boat, the program will tell you who won."
     exit
-elsif ARGV[0].downcase == "about"
+elsif ARGV[0] == "about"
     puts "This is Ruby Battleship!"
     puts "It was created by Grey Joyner in 2020."
     puts "Its purpose is to create a terminal app to play the game battleship."
     exit
-elsif ARGV[0].downcase == "easy" || ARGV[1] == "easy"
+elsif ARGV[0] == "easy" || ARGV[1] == "easy"
     easy = true
-elsif ARGV[0].downcase == "fast" || ARGV[1] == "fast"
+elsif ARGV[0] == "fast" || ARGV[1] == "fast"
     fast = true
 elsif ARGV[0]
     puts "Invalid argument. For help, type '-h' or '--help'. For easy mode, type 'easy'."
@@ -93,7 +94,10 @@ while !over
     over = done(user_guess_board.board)
     if over
         sleep(1) if !fast
+        puts
         puts "You won! Congratulations!"
+        a = Artii::Base.new :font => 'slant'
+        puts a.asciify('WIN!')
         sleep(2) if !fast
         break
     end
@@ -105,6 +109,9 @@ while !over
     if over
         sleep(1) if !fast
         puts "You lost. Better luck next time!"
+        puts
+        a = Artii::Base.new :font => 'slant'
+        puts a.asciify('LOSE!')
         sleep(2) if !fast
     end
 end

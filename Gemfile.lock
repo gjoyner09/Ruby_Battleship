@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    artii (2.1.2)
     colorize (0.8.1)
     diff-lcs (1.4.4)
     rspec (3.10.0)
@@ -22,6 +23,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  artii (~> 2.1)
   colorize (~> 0.8.1)
   rspec (~> 3.10)
 

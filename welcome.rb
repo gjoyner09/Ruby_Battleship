@@ -1,6 +1,10 @@
 require 'colorize'
+require 'artii'
 
 def welcome(fast)
+    a = Artii::Base.new :font => 'slant'
+    puts a.asciify('BATTLESHIP!')
+    sleep(1) if !fast
     puts "Welcome to Ruby Battleship by Grey Joyner!"
     puts "-------"
     sleep(2) if !fast
