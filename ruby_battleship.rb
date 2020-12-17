@@ -5,6 +5,8 @@ require_relative('computer_turn.rb')
 require_relative('game_over.rb')
 require 'colorize'
 require 'artii'
+require 'tty-prompt'
+require 'tty-link'
 
 system("clear")
 easy = false
@@ -12,7 +14,8 @@ fast = false
 
 if ARGV[0] == "-h" || ARGV[0] == "--help"
     puts "HELP FOR RUBY BATTLESHIP:"
-    puts "- To read the rules of Battleship, please visit https://www.hasbro.com/common/instruct/Battleship.PDF"
+    puts "- To read the rules of Battleship, please visit the following link:"
+    puts TTY::Link.link_to("- OFFICIAL HASBRO BATTLESHIP RULES", "https://www.hasbro.com/common/instruct/Battleship.PDF") 
     puts "- You will start by placing your boats. Empty spaces on your board are represented by a full stop."
     puts "- You will first indicate whether your boat will be places horizontally or vertically by typing 'h' or 'v'."
     puts "- Then you will indicate the space for your boat to start in by typing the space, e.g. 'C3'."
@@ -67,13 +70,15 @@ user_guess_board = Board.new
 comp_guess_board = Board.new
 
 sleep(1) if !fast
-puts "Now to decide who goes first, we will flip a coin. Please type 'heads' or 'tails':"
-coin = gets.chomp.downcase
-while coin != "heads" && coin != "tails"
-    sleep(0.5) if !fast
-    puts "Invalid input. Please type 'heads' or 'tails'."
-    coin = gets.chomp.downcase
-end
+prompt = prompt = TTY::Prompt.new
+coin = prompt.select("Now to decide who goes first, we will flip a coin. Please choose 'heads' or 'tails':", %w(heads tails))
+# puts "Now to decide who goes first, we will flip a coin. Please type 'heads' or 'tails':"
+# coin = gets.chomp.downcase
+# while coin != "heads" && coin != "tails"
+#     sleep(0.5) if !fast
+#     puts "Invalid input. Please type 'heads' or 'tails'."
+#     coin = gets.chomp.downcase
+# end
 result = rand(2)
 result == 0 ? result = "heads" : result = "tails"
 sleep(1) if !fast

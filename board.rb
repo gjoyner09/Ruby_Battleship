@@ -1,3 +1,5 @@
+require "tty-prompt"
+
 class Board
 
     attr_accessor :board, :carrier, :battleship, :destroyer, :submarine, :patrol_boat, :boats
@@ -50,7 +52,7 @@ class Board
                 if @board[row][column] != "."
                     return false
                 else
-                    direction == "h" ? column += 1 : row += 1
+                    direction == "Horizontal" ? column += 1 : row += 1
                 end
             end
         rescue
@@ -62,17 +64,9 @@ class Board
     def place_boat_instructions(boat, fast)
         puts "Let's place your #{boat[:name]} (#{boat[:length]} spaces long)."
         sleep(1) if !fast
-        puts "Please enter 'h' if you want the #{boat[:name]} to be placed in a horizontal fashion or 'v' for a vertical fashion:"
-        direction = gets.chomp.downcase
-        loop do
-            if direction == "h" || direction == "v"
-                break
-            else
-                sleep(0.2) if !fast
-                puts "That input is invalid. Please enter either 'h' or 'v':"
-                direction = gets.chomp.downcase
-            end
-        end
+        prompt = TTY::Prompt.new
+        direction = prompt.select("Choose the direction for the boat:", %w(Horizontal Vertical))
+        puts "Direction: #{direction}"
         sleep(0.2) if !fast
         puts "Thank you. Now please enter the board space for the start of the boat (e.g. B3):"
         space = gets.chomp
@@ -117,7 +111,7 @@ class Board
         row = rand(8)
         column = rand(8)
         direction = rand(2)
-        direction == 0 ? direction = "h" : direction = "v"
+        direction == 0 ? direction = "Horizontal" : direction = "Vertical"
         loop do
             test = valid?(boat[:length], row, column, direction)
             if test
@@ -135,7 +129,7 @@ class Board
     def add_boat(boat, row, column, direction)
         for i in 1..boat[:length]
             @board[row][column] = boat[:letter]
-            direction == "h" ? column += 1 : row += 1
+            direction == "Horizontal" ? column += 1 : row += 1
         end
     end
 

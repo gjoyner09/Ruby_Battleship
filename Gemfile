@@ -15,3 +15,5 @@ gem "artii", "~> 2.1"
 gem "tty-reader", "~> 0.9.0"
 
 gem "tty-prompt", "~> 0.23.0"
+
+gem "tty-link", "~> 0.1.1"
