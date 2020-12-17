@@ -8,10 +8,12 @@ require 'artii'
 require 'tty-prompt'
 require 'tty-link'
 
+# clears the terminal screen and sets the defaults to normal difficulty and normal speed
 system("clear")
 easy = false
 fast = false
 
+# prints help messages if the user includes '-h' or '--help' in the arguments
 if ARGV[0] == "-h" || ARGV[0] == "--help"
     puts "HELP FOR RUBY BATTLESHIP:"
     puts "- To read the rules of Battleship, please visit the following link:"
@@ -25,13 +27,16 @@ if ARGV[0] == "-h" || ARGV[0] == "--help"
     puts "- The program will show you the state of the board that you've guessed, with 'x' representing a miss, a letter representing a boat you've hit and a full stop representing a space you have not yet guessed."
     puts "- When either you or the computer has sunk every boat, the program will tell you who won."
     exit
+# prints about messages if the user includes the argument 'about'
 elsif ARGV[0] == "about"
     puts "This is Ruby Battleship!"
     puts "It was created by Grey Joyner in 2020."
     puts "Its purpose is to create a terminal app to play the game battleship."
     exit
+# makes the difficulty 'easy' if the user includes the argument 'easy' (computer guesses at random)
 elsif ARGV[0] == "easy" || ARGV[1] == "easy"
     easy = true
+# makes the speed 'fast' if the user includes the argument 'fast' (ignores all the sleep methods)
 elsif ARGV[0] == "fast" || ARGV[1] == "fast"
     fast = true
 elsif ARGV[0]
@@ -41,6 +46,7 @@ end
 
 ARGV.clear
 
+# prints welcome messages and instructions, initialises the user's board and gets user to place her/his boats
 welcome(fast)
 puts "Here is your board:"
 sleep(1.5) if !fast
@@ -59,6 +65,7 @@ user_board.place_boat_instructions(user_board.submarine, fast)
 sleep(2) if !fast
 user_board.place_boat_instructions(user_board.patrol_boat, fast)
 
+# initialises the computer's board and randomly places the computer's boats
 comp_board = Board.new
 comp_board.place_boat_comp(comp_board.carrier)
 comp_board.place_boat_comp(comp_board.battleship)
@@ -66,29 +73,26 @@ comp_board.place_boat_comp(comp_board.destroyer)
 comp_board.place_boat_comp(comp_board.submarine)
 comp_board.place_boat_comp(comp_board.patrol_boat)
 
+# initialises the guessed boards for the user and computer (blank to start)
 user_guess_board = Board.new
 comp_guess_board = Board.new
 
+# flips a coin to see who goes first
 sleep(1) if !fast
 prompt = prompt = TTY::Prompt.new
 coin = prompt.select("Now to decide who goes first, we will flip a coin. Please choose 'heads' or 'tails':", %w(heads tails))
-# puts "Now to decide who goes first, we will flip a coin. Please type 'heads' or 'tails':"
-# coin = gets.chomp.downcase
-# while coin != "heads" && coin != "tails"
-#     sleep(0.5) if !fast
-#     puts "Invalid input. Please type 'heads' or 'tails'."
-#     coin = gets.chomp.downcase
-# end
 result = rand(2)
 result == 0 ? result = "heads" : result = "tails"
 sleep(1) if !fast
 puts result == coin ? "It was #{coin}! You get to go first." : "It was #{result}. The computer will go first."
 puts
 
+# if user loses the coin toss, the computer goes first
 if result != coin
     computer_turn(user_board.board, comp_guess_board.board, comp_board.boats, fast, easy)
 end
 
+# alternates between user turn and computer turn until the game is over
 over = false
 while !over
     sleep(2) if !fast

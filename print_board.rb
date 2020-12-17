@@ -1,3 +1,4 @@
+# prints the board with colors (for use in files that can't access the different instances of the Board from ruby_battleship.rb)
 def print_board_outside_class(board)
     color_board = board.map do |x|
         x.map do |y|

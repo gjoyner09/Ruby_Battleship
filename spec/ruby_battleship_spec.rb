@@ -1,5 +1,6 @@
 require_relative('../board.rb')
 
+# tests that the program is working as it should
 describe Board do
     it 'should initialize a Board instance with a board array of length 8' do
         test = Board.new

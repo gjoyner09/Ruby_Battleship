@@ -1,6 +1,7 @@
 require 'colorize'
 require 'artii'
 
+# prints welcome messages and initial instructions
 def welcome(fast)
     a = Artii::Base.new :font => 'slant'
     puts a.asciify('BATTLESHIP!')

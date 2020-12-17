@@ -1,3 +1,4 @@
+# checks to see if the game is over (can be used for the user or computer)
 def done(board)
     if board.join.count("C") == 5 &&
         board.join.count("B") == 4 &&
