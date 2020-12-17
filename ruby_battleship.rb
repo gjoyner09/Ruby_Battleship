@@ -114,6 +114,12 @@ while !over
     if over
         sleep(1) if !fast
         puts "You lost. Better luck next time!"
+        sleep(1) if !fast
+        puts
+        puts "Here is the computer's board:"
+        sleep(1) if !fast
+        puts
+        comp_board.print_board
         puts
         a = Artii::Base.new :font => 'slant'
         puts a.asciify('LOSE!')
