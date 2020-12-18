@@ -39,6 +39,24 @@ The user will use the features by either scrolling up and down and pressing ente
 
 There is full error handling built into the program, using various methods. One method is using the tty-prompt gem, which means that the user can only select either the horizontal or vertical directions, or heads or tails for the coin flip. Additionally, there are built-in functions that check that any spaces guessed by the user are both within the board and have not yet been guessed. In some cases when an error may occur in the code, I have used `rescue` to avoid an error being thrown. I have tested the program many times to ensure that potential errors are avoided.
 
+## Command line arguments
+
+### Help
+
+The user can type `-h` or `--help` as the only command line argument when running ruby_battleship.rb to get help information.
+
+### About
+
+The user can type `about` as the only command line argument when running ruby_battleship.rb to get about information.
+
+### Speed
+
+The user can type `fast` as the first or second command line argument to play a game without time breaks.
+
+### Difficulty
+
+The user can type `easy` as the first or second command line argument to play a game on 'easy' mode (computer always guesses randomly).
+
 ## Flowchart
 
 ![Flowchart](Flowchart.jpg)
@@ -52,3 +70,13 @@ Link to Trello Board: https://trello.com/b/zp1ZMWqv/ruby-battleship
 ![Card1](TrelloCard1.jpg)
 
 ![Card2](TrelloCard2.jpg)
+
+## How to install and run
+
+Dependencies 
+- Ruby 
+
+To install and run 
+- `$ gem install bundler` 
+- `$ bundle install`
+- `$ ruby ruby_battleship.rb` OR `./run_app.sh`
