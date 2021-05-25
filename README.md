@@ -4,6 +4,8 @@
 
 Link to Github repo: https://github.com/gjoyner09/Ruby_Battleship
 
+![Github](docs/Github.jpg)
+
 
 Program purpose: create the game Battleship in the Terminal. The app will allow the user to play against an AI in the game Battleship. The user will place her/his boats and guess spaces to try to sink the AI's ships. The goal of building the game is to create a fun game that people can play, as well as provide me practice in building a full Ruby terminal app. 
 
@@ -59,17 +61,17 @@ The user can type `easy` as the first or second command line argument to play a 
 
 ## Flowchart
 
-![Flowchart](Flowchart.jpg)
+![Flowchart](docs/Flowchart.jpg)
 
 ## Project Management
 
 Link to Trello Board: https://trello.com/b/zp1ZMWqv/ruby-battleship
 
-![Trello](Trello.jpg)
+![Trello](docs/Trello.jpg)
 
-![Card1](TrelloCard1.jpg)
+![Card1](docs/TrelloCard1.jpg)
 
-![Card2](TrelloCard2.jpg)
+![Card2](docs/TrelloCard2.jpg)
 
 ## How to install and run
 
